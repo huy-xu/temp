@@ -1,0 +1,52 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: rails_app_development
+      MYSQL_USER: rails_app
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+  redis:
+    image: redis:latest
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - app_network
+  server:
+    build: .
+    restart: always
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
+    volumes:
+      - .:/rails-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      RAILS_ENV: development
+      DATABASE_HOST: db
+      DATABASE_USER: rails_app
+      DATABASE_PASSWORD: 123456
+      DATABASE_NAME: rails_app_development
+    networks:
+      - app_network
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+networks:
+  app_network:
+    driver: bridge
+volumes:
+  db_data:
+  redis_data:
