@@ -7,4 +7,5 @@
 <p><strong>作成日時:</strong> <%= l(@board.created_at, format: :default) %></p>
 <p><strong>更新日時:</strong> <%= l(@board.updated_at, format: :default) %></p>
 
+<%= link_to '編集', edit_board_path(@board), class: 'btn btn-secondary' %>
 <%= link_to '戻る', boards_path %>

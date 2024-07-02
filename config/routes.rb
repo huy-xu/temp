@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'boards#index'
-  resources :boards, only: [:index, :show, :new, :create]
+  resources :boards, only: [:index, :show, :new, :create, :edit, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
