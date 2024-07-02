@@ -1,0 +1,23 @@
+<!-- app/views/boards/index.html.erb -->
+<h1>掲示板の投稿一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @boards.each do |board| %>
+      <tr>
+        <td><%= board.title %></td>
+        <td><%= board.author %></td>
+        <td><%= l(board.created_at, format: :default) %></td>
+        <td><%= l(board.updated_at, format: :default) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

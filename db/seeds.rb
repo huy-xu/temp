@@ -7,3 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Board.create([
+  { title: 'First Board', description: 'This is the first board.', author: 'Alice', assignee: 'Bob', created_at: Time.now, updated_at: Time.now },
+  { title: 'Second Board', description: 'This is the second board.', author: 'Charlie', assignee: 'Alice', created_at: Time.now, updated_at: Time.now },
+  { title: 'Third Board', description: 'This is the third board.', author: 'Bob', assignee: 'Charlie', created_at: Time.now, updated_at: Time.now }
+])
