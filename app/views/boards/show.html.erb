@@ -1,0 +1,10 @@
+<!-- app/views/boards/show.html.erb -->
+<h1>掲示板の詳細</h1>
+
+<p><strong>作成者:</strong> <%= @board.author %></p>
+<p><strong>タイトル:</strong> <%= @board.title %></p>
+<p><strong>本文:</strong> <%= @board.description %></p>
+<p><strong>作成日時:</strong> <%= l(@board.created_at, format: :default) %></p>
+<p><strong>更新日時:</strong> <%= l(@board.updated_at, format: :default) %></p>
+
+<%= link_to '戻る', boards_path %>
