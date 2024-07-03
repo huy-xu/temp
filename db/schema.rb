@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_03_153155) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_03_160516) do
   create_table "boards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -29,5 +29,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_153155) do
     t.index ["board_id"], name: "index_comments_on_board_id"
   end
 
+  create_table "read_statuses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_read_statuses_on_comment_id"
+    t.index ["user_id"], name: "index_read_statuses_on_user_id"
+  end
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.date "birthday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "comments", "boards"
+  add_foreign_key "read_statuses", "comments"
+  add_foreign_key "read_statuses", "users"
 end

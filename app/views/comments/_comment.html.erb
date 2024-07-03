@@ -2,5 +2,9 @@
 <p>
   <strong>コメント:</strong> <%= comment.content %><br>
   <strong>投稿日時:</strong> <%= l(comment.created_at, format: :default) %>
+  <% if comment.read_statuses.find_by(user: User.first, read: true) %>
+    <span class="badge badge-success">既読</span>
+  <% end %>
   <%= link_to '削除', [comment.board, comment], method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+  <%= button_to '既読を切り替え', toggle_read_board_comment_path(comment.board, comment), method: :post, class: 'btn btn-secondary' %>
 </p>
