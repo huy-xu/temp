@@ -9,3 +9,9 @@
 
 <%= link_to '編集', edit_board_path(@board), class: 'btn btn-secondary' %>
 <%= link_to '戻る', boards_path %>
+
+<h2>コメント</h2>
+<%= render @board.comments %>
+
+<h3>新しいコメント</h3>
+<%= render 'comments/form', board: @board, comment: @board.comments.build %>

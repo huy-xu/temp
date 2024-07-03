@@ -1,0 +1,6 @@
+<!-- app/views/comments/_comment.html.erb -->
+<p>
+  <strong>コメント:</strong> <%= comment.content %><br>
+  <strong>投稿日時:</strong> <%= l(comment.created_at, format: :default) %>
+  <%= link_to '削除', [comment.board, comment], method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+</p>
